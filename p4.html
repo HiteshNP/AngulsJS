@@ -1,0 +1,50 @@
+<!-- Write an Angular JS application that can calculate factorial and compute square based on given user input. -->
+
+<!DOCTYPE html>
+<html ng-app="fsApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Factorial Square</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="fsCtrl">
+    <h1>Factorial and Square</h1>
+    Enter a Number:
+    <input type="number" ng-model="num" />
+    <button ng-click="calculateFactorial()">Calculate Factorial</button>
+    <button ng-click="calculateSquare()">Calculate Square</button>
+    <p ng-show="fact !== undefined">Factorial: {{fact}}</p>
+    <p ng-show="sqr !== undefined">Square: {{sqr}}</p>
+</body>
+
+<script>
+    angular.module("fsApp",[])
+    .controller("fsCtrl", function($scope)
+    {
+        $scope.calculateFactorial=function()
+        {
+            if ($scope.num < 0)
+            {
+                $scope.fact= 'Cannot calculate factorial for negative numbers!';
+            }
+            else if ($scope.num == 0)
+            {
+                $scope.fact=1;
+            }
+            else
+            {
+                $scope.fact=1;
+                for(var i=2; i<=$scope.num;i++)
+                {
+                    $scope.fact*=i;
+                }
+            }
+        }
+        $scope.calculateSquare=function()
+        {
+            $scope.sqr=$scope.num * $scope.num;
+        }
+    })
+</script>    
+</html>

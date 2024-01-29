@@ -1,0 +1,48 @@
+<!-- Develop an Angular JS application that displays a list of shopping items. 
+     Allow users to add and remove items from the list using directives and controllers.
+     Note: The default values of items may be included in the program.  -->
+
+<!DOCTYPE html>
+<html ng-app="shoppingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>AngularJS Shopping App</title>
+</head>
+
+<body ng-controller="shoppingCtrl">
+    <h1>Shopping List</h1>
+    <table>
+        <tr ng-repeat="item in shoppingItems">
+            <td>{{item}}</td>
+            <td><button ng-click="remove($index)">Remove</button></td>
+        </tr>
+    </table>
+    <input type="text" ng-model="newItem">
+    <button ng-click="addItem()">Add</button>
+</body>
+
+<script>
+    angular.module("shoppingApp", [])
+    .controller("shoppingCtrl", function($scope)
+    {
+        $scope.shoppingItems=["Apples", "Bread", "Tomato", "Potato"];
+        $scope.remove=function(index)
+        {
+            $scope.shoppingItems.splice(index,1)
+        }
+        $scope.addItem=function()
+        {
+            if($scope.newItem)
+            {
+                $scope.shoppingItems.push($scope.newItem)
+                ////clear the input fields
+                $scope.newItem='';
+            }
+        }
+
+    })
+
+</script>
+</html>

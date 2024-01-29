@@ -1,0 +1,61 @@
+<!-- Develop a simple Angular JS calculator application that can perform basic mathematical operations
+     (addition, subtraction, multiplication, division) based on user input. -->
+
+<!DOCTYPE html>
+<html ng-app="calculatorApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="calculatorCtrl">
+    <h1>Simple Calculator</h1>
+    Enter Number 1:
+    <input type="number" ng-model="num1">
+    &emsp;
+    Select Operator:
+    <select ng-model="operator">
+        <option value="+">Addition</option>
+        <option value="-">Subtraction</option>
+        <option value="*">Multiplication</option>
+        <option value="/">Division</option>
+    </select>
+    &emsp;
+    Enter Number 2:
+    <input type="number" ng-model="num2">
+    &emsp;
+    <button ng-click="calculate()">Calculate</button>
+    <h3 ng-show="result != undefined">Result: {{result}}</h3>
+</body>
+
+<script>
+    angular.module("calculatorApp", [])
+    .controller("calculatorCtrl", function($scope)
+    {
+        $scope.calculate=function()
+        {
+            switch ($scope.operator)
+            {
+                case '+': $scope.result= $scope.num1 + $scope.num2; break;
+                case '-': $scope.result= $scope.num1 - $scope.num2; break;
+                case '*': $scope.result= $scope.num1 * $scope.num2; break;
+                case '/':
+                    if($scope.num2 != 0)
+                    {
+                        $scope.result= $scope.num1 / $scope.num2; 
+                    }
+                    else
+                    {
+                        $scope.result= "Number cannot be divisible by zero";
+                    }
+                break;
+
+                default: $scope.result="Error!, Check whether both numbers are entered or an operator is selected properly ";
+            }
+        }
+    })
+</script>
+
+</html>
