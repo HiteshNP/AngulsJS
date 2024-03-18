@@ -69,8 +69,9 @@
                 $scope.users.splice(index, 1, updatedUser); 
             } 
         } 
-        $scope.deleteUser = function (index) 
+        $scope.deleteUser = function (user) 
         { 
+            var index = $scope.users.indexOf(user);
             $scope.users.splice(index, 1); 
         }
     })
