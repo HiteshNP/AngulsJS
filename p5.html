@@ -1,5 +1,6 @@
 <!-- Develop AngularJS application that displays a details of students and their CGPA.
-     Allow users to read the number of students and display the count. Note: Student details may be included in the program. -->
+     Allow users to read the number of students and display the count. 
+     Note: Student details may be included in the program. -->
 
 
 <!DOCTYPE html>
@@ -14,34 +15,38 @@
     <h1>Student Details</h1>
     Student Name:
     <input type="text" ng-model="name">
+    &emsp;
     CGPA:
     <input type="number" ng-model="cgpa" ng-min="1"ng-max="10">
-
+    &emsp;
     <button ng-click="addStudent()">Add Student</button>
-    <p>Total Students: {{students.length }}</p>
-
     <ul>
         <li ng-repeat="student in students">
             {{student.name}} - CGPA:{{student.cgpa}}
         </li>
     </ul>    
-</body>
-<script>
-    angular.module("studentApp", [])
-    .controller("studentCtrl", function($scope)
-    {
-        $scope.students= [];
-        $scope.addStudent=function()
+    <p>Total Students: {{students.length }}</p>
+
+    <script>
+        angular.module("studentApp", [])
+        .controller("studentCtrl", function($scope)
         {
-            if($scope.name && $scope.cgpa)
+            $scope.students= 
+            [
+                {name:'Ankith', cgpa:10},
+                {name:"Hitesh", cgpa:9}
+            ];
+            $scope.addStudent=function()
             {
-                $scope.students=[];
-                $scope.students.push({name:$scope.name, cgpa:$scope.cgpa})
+                if($scope.name && $scope.cgpa)
+                {
+                    $scope.students.push({name:$scope.name, cgpa:$scope.cgpa})
+                }
+                //clear input fields
+                $scope.name='';
+                $scope.cgpa='';
             }
-            //clear input fields
-            $scope.name='';
-            $scope.cgpa='';
-        }
-    })
-</script>
+        })
+    </script>
+</body>
 </html>

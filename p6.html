@@ -1,3 +1,7 @@
+<!-- Develop an AngularJS program to create a simple to-do list application. Allow users 
+to add, edit, and delete tasks. Note: The default values for tasks may be included in 
+the program.  -->
+
 <!DOCTYPE html>
 <html ng-app="todoApp">
 <head>
@@ -8,11 +12,10 @@
 </head>
 <body ng-controller="todoCtrl">
     <h1>Todo List</h1>
-    <form ng-submit="addTask()">
-        Task:
-        <input type="text" ng-model="newTask">
-        <button ng-click="submit">Add Task</button>
-    </form>
+    Task:
+    <input type="text" ng-model="newTask">
+    <button ng-click="addTask()">Add Task</button>
+    <br>
     <br>
     <table>
         <thead>
@@ -31,30 +34,37 @@
             </tr>
         </tbody>
     </table>
-</body>
-<script>
-    angular.module("todoApp", [])
-    .controller("todoCtrl", function($scope)
-    {
+    <script>
+        angular.module("todoApp", [])
+        .controller("todoCtrl", function($scope)
+        {
+            $scope.tasks=['Task1', 'Task2', 'Task3'];
 
-        $scope.addTask = function ()
-        {
-            $scope.tasks.push($scope.newTask)
-            $scope.newTask='';
-        }
-        $scope.tasks=['Task1', 'Task2', 'Task3'];
-        $scope.editTask=function(index)
-        {
-            var updatedTask = prompt('Enter updated task:');
-            if (updatedTask != null)
+            $scope.addTask = function ()
             {
-                $scope.tasks.splice(index, 1, updatedTask);
+                if($scope.newTask)
+                {
+                    $scope.tasks.push($scope.newTask)
+                    $scope.newTask='';
+                }
+
             }
-        }
-        $scope.deleteTask = function (index)
-        {
-            $scope.tasks.splice(index, 1);
-        }
-    })
-</script>
+
+            $scope.editTask=function(index)
+            {
+                var task=$scope.tasks[index];
+                var updatedTask = prompt('Enter updated task:');
+                if (updatedTask !== null)
+                {
+                    $scope.tasks.splice(index, 1, updatedTask);
+                }
+            }
+
+            $scope.deleteTask = function (index)
+            {
+                $scope.tasks.splice(index, 1);
+            }
+        })
+    </script>
+</body>
 </html>

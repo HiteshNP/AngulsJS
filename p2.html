@@ -21,28 +21,29 @@
     </table>
     <input type="text" ng-model="newItem">
     <button ng-click="addItem()">Add</button>
-</body>
+    <p>Total Items: {{ shoppingItems.length }}</p>
 
-<script>
-    angular.module("shoppingApp", [])
-    .controller("shoppingCtrl", function($scope)
-    {
-        $scope.shoppingItems=["Apples", "Bread", "Tomato", "Potato"];
-        $scope.remove=function(index)
+    <script>
+        angular.module("shoppingApp", [])
+        .controller("shoppingCtrl", function($scope)
         {
-            $scope.shoppingItems.splice(index,1)
-        }
-        $scope.addItem=function()
-        {
-            if($scope.newItem)
+            $scope.shoppingItems=["Apples", "Bread", "Tomato", "Potato"];
+            $scope.remove=function(index)
             {
-                $scope.shoppingItems.push($scope.newItem)
-                ////clear the input fields
-                $scope.newItem='';
+                $scope.shoppingItems.splice(index,1)
             }
-        }
+            $scope.addItem=function()
+            {
+                if($scope.newItem)
+                {
+                    $scope.shoppingItems.push($scope.newItem)
+                    ////clear the input fields
+                    $scope.newItem='';
+                }
+            }
 
-    })
+        })
 
-</script>
+    </script>
+</body>
 </html>

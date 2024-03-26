@@ -27,35 +27,34 @@
     <input type="number" ng-model="num2">
     &emsp;
     <button ng-click="calculate()">Calculate</button>
-    <h3 ng-show="result != undefined">Result: {{result}}</h3>
-</body>
+    <h3 ng-show="result != undefined" >Result: {{result}}</h3>
 
-<script>
-    angular.module("calculatorApp", [])
-    .controller("calculatorCtrl", function($scope)
-    {
-        $scope.calculate=function()
+    <script>
+        angular.module("calculatorApp", [])
+        .controller("calculatorCtrl", function($scope)
         {
-            switch ($scope.operator)
+            $scope.calculate=function()
             {
-                case '+': $scope.result= $scope.num1 + $scope.num2; break;
-                case '-': $scope.result= $scope.num1 - $scope.num2; break;
-                case '*': $scope.result= $scope.num1 * $scope.num2; break;
-                case '/':
-                    if($scope.num2 != 0)
-                    {
-                        $scope.result= $scope.num1 / $scope.num2; 
-                    }
-                    else
-                    {
-                        $scope.result= "Number cannot be divisible by zero";
-                    }
-                break;
+                switch ($scope.operator)
+                {
+                    case '+': $scope.result= $scope.num1 + $scope.num2; break;
+                    case '-': $scope.result= $scope.num1 - $scope.num2; break;
+                    case '*': $scope.result= $scope.num1 * $scope.num2; break;
+                    case '/':
+                        if($scope.num2 != 0)
+                        {
+                            $scope.result= $scope.num1 / $scope.num2; 
+                        }
+                        else
+                        {
+                            $scope.result= "Number cannot be divisible by zero";
+                        }
+                    break;
 
-                default: $scope.result="Error!, Check whether both numbers are entered or an operator is selected properly ";
+                    default: $scope.result=" Error! Check whether both numbers are entered or an operator is selected properly ";
+                }
             }
-        }
-    })
-</script>
-
+        })
+    </script>
+</body>
 </html>

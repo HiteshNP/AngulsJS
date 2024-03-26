@@ -18,19 +18,18 @@
     </h3>
     <button ng-click="display()">Display</button>
     <h1>Full Name: {{fullName}} </h1>  
-</body>
 
-<script>
-    angular.module("nameApp", [])
-    .controller("nameCtrl", function($scope)
-    {
-        $scope.firstName='';
-        $scope.lastName='';
-        $scope.display=function()
+    <script>    
+        angular.module("nameApp", [])
+        .controller("nameCtrl", function($scope)
         {
-            $scope.fullName=$scope.firstName+ ' ' +$scope.lastName;
-        }
-    })
-</script>
-
+            $scope.firstName='Hitesh';
+            $scope.lastName='N P';
+            $scope.display=function()
+            {
+                $scope.fullName=$scope.firstName+ ' ' +$scope.lastName;
+            }
+        })
+    </script>
+</body>
 </html>
